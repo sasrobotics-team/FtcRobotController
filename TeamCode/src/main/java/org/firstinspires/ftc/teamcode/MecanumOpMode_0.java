@@ -41,10 +41,10 @@ public class MecanumOpMode_0 extends OpMode {
         back_right  = hardwareMap.get(DcMotor.class, "back_right");
 
         // Motor directions
-        front_left.setDirection(DcMotor.Direction.REVERSE);
-        back_left.setDirection(DcMotor.Direction.REVERSE);
-        front_right.setDirection(DcMotor.Direction.FORWARD);
-        back_right.setDirection(DcMotor.Direction.FORWARD);
+        front_left.setDirection(DcMotor.Direction.FORWARD);
+        back_left.setDirection(DcMotor.Direction.FORWARD);
+        front_right.setDirection(DcMotor.Direction.REVERSE);
+        back_right.setDirection(DcMotor.Direction.REVERSE);
 
         // Brake on zero power — hard stop when sticks are released
         front_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
