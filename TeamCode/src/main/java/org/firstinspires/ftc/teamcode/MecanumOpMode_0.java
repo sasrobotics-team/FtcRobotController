@@ -113,7 +113,7 @@ public class MecanumOpMode_0 extends OpMode {
         double y  = -gamepad1.left_stick_y;   // forward/back (inverted stick)
         double rx =  gamepad1.right_stick_x;  // rotation
 
-        // Deadzone — prevents motor chatter when sticks sit slightly off-center
+        // Dead zone — prevents motor chatter when sticks sit slightly off-center
         if (Math.abs(x)  < 0.05) x  = 0;
         if (Math.abs(y)  < 0.05) y  = 0;
         if (Math.abs(rx) < 0.05) rx = 0;
