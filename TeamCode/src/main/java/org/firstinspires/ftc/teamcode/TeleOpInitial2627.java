@@ -45,6 +45,7 @@ public class TeleOpInitial2627 extends OpMode {
     boolean prevA = false;
     boolean prevX = false;
     boolean intakeOn = false;
+    boolean shooterOn = false;
 
     @Override
     public void init() {
@@ -57,11 +58,11 @@ public class TeleOpInitial2627 extends OpMode {
         intake_servo = hardwareMap.get(Servo.class, "intake_servo");
 
         // Motor directions
-        front_left.setDirection(DcMotor.Direction.FORWARD);
-        back_left.setDirection(DcMotor.Direction.FORWARD);
-        front_right.setDirection(DcMotor.Direction.REVERSE);
-        back_right.setDirection(DcMotor.Direction.REVERSE);
-        intake.setDirection(DcMotor.Direction.REVERSE);
+        front_left.setDirection(DcMotor.Direction.REVERSE);
+        back_left.setDirection(DcMotor.Direction.REVERSE);
+        front_right.setDirection(DcMotor.Direction.FORWARD);
+        back_right.setDirection(DcMotor.Direction.FORWARD);
+        intake.setDirection(DcMotor.Direction.FORWARD);
         shooter.setDirection(DcMotor.Direction.FORWARD);
 
         // Brake on zero power — hard stop when sticks are released
@@ -113,7 +114,7 @@ public class TeleOpInitial2627 extends OpMode {
             intakeOn = !intakeOn;
         }
         if (intakeOn) {
-            intake.setVelocity(1000);
+            intake.setVelocity(-1000);
         } else {
             intake.setVelocity(0);
         }
@@ -126,7 +127,7 @@ public class TeleOpInitial2627 extends OpMode {
             intake.setDirection(DcMotor.Direction.FORWARD);
         }
 
-        if(gamepad1.dpad_up) {
+        /*if(gamepad1.dpad_up) {
             intake_servo.setPosition(intake_servo_pollen);
         }
         if(gamepad1.dpad_down) {
@@ -138,15 +139,21 @@ public class TeleOpInitial2627 extends OpMode {
         if(gamepad1.dpad_left) {
             intake_servo.setPosition(intake_servo_start);
         }
-        else {
-            shooter.setVelocity(intake_servo_start);
+        */
+        // ── SHOOTER (dpad_down = on, dpad_up = off) ───────────────────────────
+        if (gamepad1.dpad_down) {
+            shooterOn = true;
+        }
+        if (gamepad1.dpad_up) {
+            shooterOn = false;
         }
 
-        if(gamepad1.dpad_down) {
-            shooter.setVelocity(6000);
+        if (shooterOn) {
+            shooter.setVelocity(1500);
         } else {
             shooter.setVelocity(0);
         }
+
 
         // ── HEADLESS TOGGLE (B) & HEADING RESET (Y) ───────────────────────────
         boolean bPressed = gamepad1.b;
@@ -180,7 +187,7 @@ public class TeleOpInitial2627 extends OpMode {
 
         // ── INPUTS ────────────────────────────────────────────────────────────
         double x = gamepad1.left_stick_x;   // strafe
-        double y = -gamepad1.left_stick_y;   // forward/back (inverted stick)
+        double y = gamepad1.left_stick_y;    // forward/back (sign flipped to match current motor directions)
         double rx = gamepad1.right_stick_x;  // rotation
 
         // Dead zone — prevents motor chatter when sticks sit slightly off-center
