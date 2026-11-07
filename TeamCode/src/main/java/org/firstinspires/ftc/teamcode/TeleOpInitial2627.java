@@ -143,7 +143,7 @@ public class TeleOpInitial2627 extends OpMode {
         }
 
         if(gamepad1.dpad_down) {
-            shooter.setVelocity(6000);
+            shooter.setVelocity(1500);
         } else {
             shooter.setVelocity(0);
         }
