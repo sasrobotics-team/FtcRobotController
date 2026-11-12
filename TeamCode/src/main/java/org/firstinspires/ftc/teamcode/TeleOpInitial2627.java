@@ -62,7 +62,7 @@ public class TeleOpInitial2627 extends OpMode {
         back_left.setDirection(DcMotor.Direction.REVERSE);
         front_right.setDirection(DcMotor.Direction.FORWARD);
         back_right.setDirection(DcMotor.Direction.FORWARD);
-        intake.setDirection(DcMotor.Direction.FORWARD);
+        intake.setDirection(DcMotor.Direction.REVERSE);
         shooter.setDirection(DcMotor.Direction.FORWARD);
 
         // Brake on zero power — hard stop when sticks are released
@@ -114,7 +114,7 @@ public class TeleOpInitial2627 extends OpMode {
             intakeOn = !intakeOn;
         }
         if (intakeOn) {
-            intake.setVelocity(-1000);
+            intake.setVelocity(-6000);
         } else {
             intake.setVelocity(0);
         }
