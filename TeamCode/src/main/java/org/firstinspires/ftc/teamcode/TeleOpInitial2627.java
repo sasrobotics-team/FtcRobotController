@@ -114,7 +114,7 @@ public class TeleOpInitial2627 extends OpMode {
             intakeOn = !intakeOn;
         }
         if (intakeOn) {
-            intake.setVelocity(-6000);
+            intake.setVelocity(1000); // ** Renn modified intake speed **
         } else {
             intake.setVelocity(0);
         }
@@ -265,6 +265,8 @@ public class TeleOpInitial2627 extends OpMode {
                 front_left.getCurrentPosition(), front_right.getCurrentPosition());
         telemetry.addData("Enc BL/BR", "%d  /  %d",
                 back_left.getCurrentPosition(), back_right.getCurrentPosition());
+        telemetry.addData("Intake vel", intake.getVelocity());
+        telemetry.addData("Intake pos", intake.getCurrentPosition());
         telemetry.update();
     }
 
